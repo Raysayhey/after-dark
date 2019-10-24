@@ -5,19 +5,23 @@ animations.push({
 });
 animations.push({
 	"path": "/animation/darkbar",
-	"time": 3000
+	"time": 10000
 });
 animations.push({
-	"path": "/animation/text",
-	"time": 3000
+	"path": "/animation/darktext",
+	"time": 10000
 });
 animations.push({
 	"path": "/animation/date",
-	"time": 3000
+	"time": 5000
 });
 animations.push({
-	"path": "/animation/darkbar",
-	"time": 3000
+	"path": "/animation/longdark",
+	"time": 10000
+});
+animations.push({
+	"path": "/animation/date",
+	"time": 5000
 });
 console.log('animations>>>', animations);
 if(typeof animation_no == "undefined") {

@@ -1,8 +1,5 @@
 <template>
   <div id="splash" :style="{ backgroundImage: `url(${splashUrl})` }">
-    <div class="title">
-      <h1>Animation is Fun!</h1>
-    </div>
   </div>
 </template>
 <style>
@@ -13,41 +10,17 @@
     left: 0px;
     right: 0px;
     height: 100vh;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 10;
     overflow: hidden;
-    animation: fadeinout 6s linear 1s forwards;
-  }
-  .title {
-    position: fixed;
-    bottom: -60px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    height: fit-content;
-    animation: animatebottom 2s linear 1s forwards;
-  }
-  @keyframes fadeinout {
-    from {
-      visibility: visible;
-      opacity: 1;
-      transition: opacity 2s linear;
-    }
-    to {
-      visibility: hidden;
-      opacity: 0;
-      transition: visibility 0s 2s, opacity 2s linear;
-    }
-  }
-  @keyframes animatebottom {
-    from {top: 100%;}
-    to {top: 10%;}
+    opacity: 0;
+    animation: fade-in-out 6s linear 1s forwards;
   }
 </style>
 <script>
-  import splashUrl from '~/assets/img/splash.gif'
+  import splashUrl from '~/assets/img/logo.jpg'
   export default {
     transition: 'bounce',
     data() {
@@ -57,7 +30,7 @@
     },
     middleware: [
       function({ redirect }) {
-        var animation_time = 6000;
+        var animation_time = 6500;
         setTimeout(function() {
           var next_no = ++animation_no;
           if(next_no > animations.length)

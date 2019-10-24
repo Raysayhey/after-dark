@@ -14,12 +14,12 @@
     left: 0;
     right: 0;
     top: 0;
-    animation: fade-in 5s;
+    animation: fade-in 4s;
     animation-fill-mode: forwards;
-    animation-delay: 6s;
+    animation-delay: 1s;
     background-color: #3e3e3e;
     opacity: 0;
-    margin: 0 4%;
+    margin: 0;
   }
   .credits {
     overflow: hidden;
@@ -27,11 +27,10 @@
   .credit__container {
     font-size: 0;
     list-style-type: none;
-    margin: 0 4%;
+    margin: 0;
     padding: 0;
     position: relative;
   }
-
   .credit__item {
     background-color: black;
     height: calc(100vh / 28);
@@ -41,43 +40,14 @@
   .credit__item.active {
     animation: slide-in 500ms forwards;
   }
-  // Animation Keyframes
 
-  @keyframes fade-in {
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fade-in-out {
-    0% {
-      opacity: 0;
-    }
-    20% {
-      opacity: 1;
-    }
-    80% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes slide-in {
-    100% {
-      transform: translateX(0%);
-    }
-  }
 </style>
 <script>
-  (function () {
-    var Credits, roll;
-
+  var item_count = 28;
+  var Credits;
+  $(function() {
     Credits = class Credits {
       constructor($wrap) {
-        this.creditInit = this.creditInit.bind(this);
-        this.slideIn = this.slideIn.bind(this);
         this.$wrap = $wrap;
         this.$creditContainer = this.$wrap.find('.js-credit-container');
         this.creditInit();
@@ -86,13 +56,13 @@
       creditInit() {
         var i, j, results;
         results = [];
-        for (i = j = 1; j <= 10; i = ++j) {
+        for (i = j = 1; j <= item_count; i = ++j) {
           results.push((i => {
             this.$creditContainer.append('<li class="credit__item"></li>');
-            if (i === 28) {
+            if (i === item_count) {
               return setTimeout(() => {
                 return this.slideIn();
-              }, 10000);
+              }, 4000);
             }
           })(i));
         }
@@ -115,19 +85,22 @@
           })(index, position));
         }
         return results;
-      }};
-
-    roll = new Credits($('.js-credits'));
-
-  }).call(this);
+      }
+    };
+  });
   export default {
     transition: 'bounce',
+    async asyncData() {
+      setTimeout(() => {
+        return new Credits($('.js-credits'));
+      }, 1000);
+    },
     middleware: [
       function({ redirect }) {
-        var animation_time = 6000;
+        var animation_time = 10000;
         setTimeout(function() {
           var next_no = ++animation_no;
-          if(next_no > animations.length)
+          if(next_no >= animations.length)
             return true;
           console.log('animation_no>>>', next_no);
           return redirect(301, animations[next_no].path);
