@@ -23,10 +23,17 @@
 <script>
   export default {
     data() {
+      // var today = new Date();
+      // var dd = String(today.getDate()).padStart(2, '0');
+      // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      // var yyyy = today.getFullYear();
+
+      // today = dd + '.' + mm + '.' + yyyy;
+
       var today = new Date();
-      var dd = String(today.getDate()).padStart(2, '0');
-      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-      var yyyy = today.getFullYear();
+      var dd = 1;
+      var mm = 11;//January is 0!
+      var yyyy = 2019;
 
       today = dd + '.' + mm + '.' + yyyy;
       var animation_date = today;
@@ -36,7 +43,7 @@
     },
     middleware: [
       function({ redirect }) {
-        var animation_time = 5000;
+        var animation_time = 2000;
         setTimeout(function() {
           var next_no = ++animation_no;
           if(next_no >= animations.length)
